@@ -5,7 +5,7 @@ import Example from './Example'
 
 const App = () =>
   <View>
-    <Text>App..</Text>
+    <Text>App.....</Text>
     <Example />
   </View>
 

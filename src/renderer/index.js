@@ -13,14 +13,22 @@ replayActionRenderer(store)
 const rootTag = document.getElementById('app')
 const initialProps = {}
 
-const AppContainer = () =>
-  <Provider store={store}>
-    <Router history={history}>
-      <App />
-    </Router>
-  </Provider>
+const renderApp = Component => {
+  AppRegistry.registerComponent('App', () =>
+    () =>
+      <Provider store={store}>
+        <Router history={history}>
+          <Component />
+        </Router>
+      </Provider>
+  )
+  AppRegistry.runApplication('App', { initialProps, rootTag })
+}
 
-AppRegistry.registerComponent('App', () => AppContainer)
-AppRegistry.runApplication('App', { initialProps, rootTag })
+renderApp(App)
 
-if (module.hot) module.hot.accept()
+if (module.hot) {
+  module.hot.accept('./containers/App', () =>
+    renderApp(require('./containers/App').default)
+  )
+}
