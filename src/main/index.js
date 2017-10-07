@@ -5,6 +5,10 @@ import installExtension, {
   REDUX_DEVTOOLS
 } from 'electron-devtools-installer'
 import isDev from 'electron-is-dev'
+import { persistStore } from 'redux-persist'
+import { replayActionMain } from 'electron-redux'
+
+import store from './lib/store'
 
 let mainWindow
 let initialBoot = true
@@ -14,6 +18,11 @@ const createMainWindow = async () => {
     defaultWidth: 1000,
     defaultHeight: 800
   })
+
+  if (initialBoot) {
+    persistStore(store)
+    replayActionMain(store)
+  }
 
   if (initialBoot && isDev) {
     await installExtension([ REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS ])
