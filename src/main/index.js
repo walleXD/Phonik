@@ -36,7 +36,8 @@ const createMainWindow = async () => {
     width: mainWindowState.width,
     height: mainWindowState.height,
     minWidth: 800,
-    minHeight: 620
+    minHeight: 620,
+    frame: false
   })
 
   mainWindowState.manage(win)

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import Router from 'react-router-redux/ConnectedRouter'
 import { replayActionRenderer } from 'electron-redux'
 
+import './lib/styles.scss'
 import store from './lib/store'
 import history from './lib/history'
 import App from './containers/App'
